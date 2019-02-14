@@ -8,3 +8,56 @@ uses the [[https://nixos.org/nix/][Nix package manager]] rather than [[https://d
 
 Please see [[https://github.com/Gabriel439/haskell-nix][Haskell-nix tutorial]] and the video by John Weigley [[https://www.youtube.com/watch?v=G9yiJ7d5LeI&t=1158s][How I
 use Nix for Haskell development]].
+
+** Mysterious parse errors with Emacs
+
+Haskell is a functional language, like Lisp.  However the default
+Haskell mode has support for what is called [[http://haskell.github.io/haskell-mode/manual/13.20/Font-Lock-Support.html][Font Lock mode]]. This will
+change the characters you type from ascii to a small set of Unicode 
+characters. An example is the forward slash will turn into a greek
+lambda in an anonymous function when displayed in the buffer in Emacs.
+This is specifically done to emphasize the connection between and an anonymous
+function in Haskell and the Lambda calculus.
+
+
+More generally the goal is to emphasize the deep connection between
+Haskell and [[https://bartoszmilewski.com/2014/10/28/category-theory-for-programmers-the-preface/][Category Theory]]. It should work by default but can throw
+very difficult to debug ’failure to parse’ errors when it fails. A
+larger set of Unicode characters are available through an optional
+package called [[https://github.com/roelvandijk/emacs-haskell-unicode-input-method][emacs-haskell-unicode-input-method]]. However, in order 
+for this to work, your haskell code must be modified in three ways.
+
+First you must include the language pragma in your program:
+
+#+BEGIN_SRC Haskell :results silent :exports code
+{-# LANGUAGE UnicodeSyntax #-}
+#+End_Src
+
+And you must explicitly include the libraries that include the symbols 
+you use in your program. Most beginner projects will be covered by:
+
+#+BEGIN_SRC Haskell :results silent :exports code
+import Prelude.Unicode
+import Data.Monoid.Unicode
+#+End_Src
+
+Finally, you must tell your build system that you need these new
+libraries. Your build system will either be Cabal, Stack or Nix. Here
+is how to include them in a Cabal file.
+
+#+BEGIN_SRC Markdown :results silent :exports code
+library Lib
+  exposed-modules:     Lib
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.12 && <4.13
+                     , servant-server
+                     , aeson
+                     , wai
+                     , warp
+                     , base-unicode-symbols
+                     , containers-unicode-symbols
+#+End_Src
+
+You can check out the Lib.hs file and evserv.cabal for examples of
+this configuration.
