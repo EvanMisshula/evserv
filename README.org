@@ -1,0 +1,10 @@
+* First step in compiling a single page app1
+This repo is based on [[https://jappieklooster.nl/pragmatic-haskell-simple-servant-web-server.html][the simple web server tutorial]].  Although by
+necessity it impliments the more modern server from [[https://haskell-servant.readthedocs.io/en/stable/tutorial/Server.html][the Servant
+tutorial version 0.15]]. The major difference is that the current repo
+uses the [[https://nixos.org/nix/][Nix package manager]] rather than [[https://docs.haskellstack.org/en/stable/README/][Haskell Stack.]]
+
+** For a tutorial on Nix with Haskell
+
+Please see [[https://github.com/Gabriel439/haskell-nix][Haskell-nix tutorial]] and the video by John Weigley [[https://www.youtube.com/watch?v=G9yiJ7d5LeI&t=1158s][How I
+use Nix for Haskell development]].
