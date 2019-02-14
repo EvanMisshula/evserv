@@ -1,0 +1,13 @@
+{ mkDerivation, aeson, base, servant-server, stdenv, wai, warp }:
+mkDerivation {
+  pname = "evserv";
+  version = "0.1.0.0";
+  src = ./.;
+  isLibrary = false;
+  isExecutable = true;
+  libraryHaskellDepends = [ aeson base servant-server wai warp ];
+  executableHaskellDepends = [ base ];
+  doHaddock = false;
+  homepage = "git@github.com:EvanMisshula/evserv.git";
+  license = stdenv.lib.licenses.bsd3;
+}

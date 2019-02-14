@@ -1,0 +1,7 @@
+let
+  pkgs = import <nixpkgs> { };
+
+in
+  {
+    evserv = pkgs.haskellPackages.callPackage ./default.nix { };
+  }
