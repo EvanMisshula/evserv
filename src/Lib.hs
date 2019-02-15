@@ -18,6 +18,8 @@ module Lib
 
 import Prelude ()
 import Prelude.Compat
+import Prelude.Unicode
+import Data.Monoid.Unicode
 
 import Control.Monad.Except
 import Control.Monad.Reader

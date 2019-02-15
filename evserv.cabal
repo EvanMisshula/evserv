@@ -21,13 +21,13 @@ library Lib
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.12 && <4.13
+                     , base-unicode-symbols
                      , servant-server
                      , aeson
                      , wai
                      , warp
                      , base-unicode-symbols
                      , bytestring         
-                     , containers         
                      , mtl                
                      , text               
                      , transformers       
@@ -63,6 +63,7 @@ executable evserv-exe
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.12 && <4.13
+                     , base-unicode-symbols
                      , Lib
   hs-source-dirs:      app
   default-language:    Haskell2010
